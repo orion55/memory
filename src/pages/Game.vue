@@ -1,7 +1,6 @@
 <template>
     <div class="game">
-<!--        <card url="../assets/svg/angular.svg" item="card__item-1-1"></card>-->
-        <card item="card__item-1-1"></card>
+        <card v-for="card in cards" :card="card" :key="card.keyCard"></card>
     </div>
 </template>
 
@@ -13,19 +12,41 @@
     components: {
       card,
     },
+    data () {
+      return {
+        cards: this.generateSimpleGrid(),
+      }
+    },
+
+    methods: {
+      generateSimpleGrid () {
+        const images = ['angular', 'aurelia', 'backbone', 'jest', 'jquery', 'nuxt', 'react', 'svelte', 'vue']
+        let cards = []
+        let card = {}
+        for (let i = 0; i < 6; i++) {
+          for (let j = 0; j < 6; j++) {
+            card = {
+              url: 'svg/' + images[Math.floor(Math.random() * images.length)] + '.svg',
+              item: `card__item-${i}-${j}`,
+              isFlip: false,
+              keyCard: i * 10 + j,
+            }
+            cards.push(card)
+          }
+        }
+        return cards
+      },
+    },
   }
+
 </script>
 
 <style scoped>
     .game {
-        width: 840px;
-        height: 840px;
-        margin: auto;
-        display: flex;
-        flex-wrap: wrap;
+        height: 820px;
+        width: 635px;
+        margin: 0 auto;
         perspective: 1000px;
-        align-items: center;
-        justify-content: center;
         position: relative;
     }
 </style>

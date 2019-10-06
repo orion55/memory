@@ -7,9 +7,8 @@
 @for $i from 0 through $count - 1 {
   @for $j from 0 through $count - 1 {
     .card__item-#{$i}-#{$j} {
-      left: $i*$width;
-      top: $j*$height;
-
+      left: $j*$width + $j*$offset;
+      top: $i*$height + $i*$offset;
     }
   }
 }

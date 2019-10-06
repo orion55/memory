@@ -1,7 +1,7 @@
 <template>
-    <div :class="['card__item', item]">
-        <div class="card">
-<!--            <img class="card__front-face" :src=>-->
+    <div :class="['card__item', card.item]">
+        <div :class="['card', card.isFlip ? 'flip' : '' ]">
+            <img class="card__front-face" :src=card.url>
             <img class="card__back-face" src="svg/js-badge.svg">
         </div>
     </div>
@@ -11,8 +11,9 @@
   export default {
     name: 'card',
     props: {
-      url: String,
-      item: String,
+      card: {
+        type: Object,
+      },
     },
   }
 </script>
