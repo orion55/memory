@@ -58,7 +58,7 @@ function generateGrid () {
     }
     cards.push(card)
 
-    if ((i + 1) % 2 === 0) {
+    if ((i + 1) % 2) {
       j++
     }
   }
