@@ -1,5 +1,5 @@
 <template>
-    <div :class="['card__item', card.item]">
+    <div :class="['card__item', card.item]" v-if="card.isShow" @click="onClick(card.id)">
         <div :class="['card', card.isFlip ? 'flip' : '' ]">
             <img class="card__front-face" :src=card.url>
             <img class="card__back-face" src="svg/js-badge.svg">
@@ -14,6 +14,9 @@
       card: {
         type: Object,
       },
+      onClick: {
+        type: Function
+      }
     },
   }
 </script>
@@ -43,6 +46,10 @@
 
             & .card__back-face {
                 display: none;
+            }
+
+            & .card__front-face {
+                transform: rotateY(180deg);
             }
         }
 
