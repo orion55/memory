@@ -5,7 +5,9 @@
             |
             <router-link to="/about">About</router-link>
         </div>
+        <div id="content">
             <router-view/>
+        </div>
     </div>
 </template>
 
@@ -31,6 +33,13 @@
                 color: #42b983;
             }
         }
+    }
+
+    #content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: calc(100% - 38px);
     }
 
 </style>

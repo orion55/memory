@@ -1,6 +1,6 @@
 <template>
     <div class="game">
-        <card v-for="card in cards" :card="card" :key="card.id" :onClick="getById"></card>
+        <card v-for="card in cards" :card="card" :key="card.id" :onClick="flipCard"></card>
     </div>
 </template>
 
@@ -17,7 +17,7 @@
       ...mapState(['cards'])
     },
     methods:{
-      ...mapMutations(['getById'])
+      ...mapMutations(['flipCard'])
     }
   }
 
