@@ -45,10 +45,10 @@ function generateGrid () {
 
     card = {
       id: i,
-      name: names[j],
+      nameCard: names[j],
       url: 'svg/' + names[j] + '.svg',
       item: `card__item-${x}-${y}`,
-      isFlip: true,
+      isFlip: false,
       isShow: true,
     }
     cards.push(card)
@@ -60,4 +60,4 @@ function generateGrid () {
   return cards
 }
 
-export { generateSimpleGrid, generateGrid }
+export { generateGrid }

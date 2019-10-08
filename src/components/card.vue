@@ -1,10 +1,14 @@
 <template>
-    <div :class="['card__item', card.item]" v-if="card.isShow" @click="onClick(card.id)">
-        <div :class="['card', card.isFlip ? 'flip' : '' ]">
-            <img class="card__front-face" :src=card.url>
-            <img class="card__back-face" src="svg/js-badge.svg">
+    <transition name="fade"
+                enter-active-class="animated fadeIn fast"
+                leave-active-class="animated fadeOut" mode="out-in">
+        <div :class="['card__item', card.item]" v-if="card.isShow" @click="onClick(card.id)">
+            <div :class="['card', card.isFlip ? 'flip' : '' ]">
+                <img class="card__front-face" :src=card.url>
+                <img class="card__back-face" src="svg/js-badge.svg">
+            </div>
         </div>
-    </div>
+    </transition>
 </template>
 
 <script>
@@ -24,6 +28,7 @@
 <style lang="scss">
     @import "css/vars";
     @import "css/card-item";
+    @import "css/animated";
 
     .card {
         width: $width;
@@ -65,7 +70,7 @@
         padding: 10px;
         position: absolute;
         border-radius: 10px;
-        background: $color-main;
+        background: linear-gradient(to bottom, #ffc97d 0%, #ffb54e 50%, #ff9d13 51%, #bf873a 100%);
         border: white solid 1px;
     }
 

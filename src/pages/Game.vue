@@ -6,7 +6,7 @@
 
 <script>
   import card from '../components/card'
-  import { mapState, mapMutations } from 'vuex'
+  import { mapState, mapActions } from 'vuex'
 
   export default {
     name: 'Game',
@@ -16,8 +16,8 @@
     computed: {
       ...mapState(['cards'])
     },
-    methods:{
-      ...mapMutations(['flipCard'])
+    methods: {
+      ...mapActions(['flipCard'])
     }
   }
 
