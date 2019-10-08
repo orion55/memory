@@ -25,8 +25,8 @@
 
 <style scoped>
     .game {
-        height: 635px;
-        width: 635px;
+        height: 638px;
+        width: 638px;
         margin: 0 auto;
         perspective: 1000px;
         position: relative;

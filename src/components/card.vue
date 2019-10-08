@@ -33,8 +33,9 @@
         transform: scale(1);
         transform-style: preserve-3d;
         transition: transform .5s;
-        box-shadow: 1px 1px 1px rgba(0, 0, 0, .3);
+        /*box-shadow: 1px 1px 1px rgba(0, 0, 0, .3);*/
         border-radius: 10px;
+
 
         &:active {
             transform: scale(0.97);
@@ -65,9 +66,7 @@
         position: absolute;
         border-radius: 10px;
         background: $color-main;
+        border: white solid 1px;
     }
 
-    .front-face {
-        transform: rotateY(180deg);
-    }
 </style>

@@ -1,0 +1,42 @@
+@import "vars";
+
+.btn {
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+
+  margin: 2px 0;
+
+  border-radius: 7px;
+  font-weight: 700;
+
+  padding: 10px 50px;
+
+  color: #FFFFFF;
+  background-color: $color-two;
+
+  transition: background-color .5s ease-out;
+  border: white solid 2px;
+
+
+  &:active {
+    transform: translateY(1px);
+    filter: saturate(150%);
+  }
+
+  &:hover {
+    color: $color-two;
+    background-color: white;
+    border: $color-two solid 2px;
+  }
+
+  &::-moz-focus-inner {
+    border: none;
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(255, 156, 19, 0.5),
+    0 0 0 1.5px rgba(166, 99, 6, 0.5);
+  }
+}
