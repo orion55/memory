@@ -18,7 +18,7 @@ function generateSimpleGrid () {
 }
 
 function generateGrid () {
-  const countCards = 18
+  const countCards = 6
   const countCells = 6
   const names = ['angular', 'aurelia', 'backbone', 'jest', 'jquery', 'nuxt', 'react', 'svelte', 'vue']
 

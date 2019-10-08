@@ -1,7 +1,14 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import { generateGrid } from './helpers/grid'
-import { getObjById, getIndexById, checkForMatch, resetBoard } from './helpers/util'
+import {
+  checkForMatch,
+  getIndexById,
+  getObjById,
+  resetUnflipCards,
+  resetUnflipSingleCard,
+  unflipSingleCard,
+} from './helpers/util'
 
 Vue.use(Vuex)
 
@@ -11,7 +18,13 @@ export default new Vuex.Store({
     hasFlippedCard: false,
     firstCard: null,
     secondCard: null,
-    timeoutID: 0,
+    firstTimeoutID: 0,
+    secondTimeoutID: 0,
+  },
+  getters: {
+    isFinish (state) {
+      return state.cards.every(elem => !elem.isShow)
+    },
   },
   mutations: {
     setFlip (state, {id, flag}) {
@@ -34,26 +47,30 @@ export default new Vuex.Store({
     },
   },
   actions: {
-    flipCard ({state, commit}, id) {
+    flipCard ({state, commit, getters}, id) {
       const obj = getObjById(state, id)
       if (obj) {
-        commit('setFlip', {id: id, flag: !obj.isFlip,})
-
-        if (state.timeoutID !== 0) {
-          clearTimeout(state.timeoutID)
-          state.timeoutID = 0
-          commit('setFlip', {id: state.firstCard.id, flag: false})
-          commit('setFlip', {id: state.secondCard.id, flag: false})
-          resetBoard(state)
+        if (obj === state.firstCard || obj === state.secondCard) {
+          return
         }
+        commit(
+          'setFlip',
+          {
+            id: id,
+            flag: !obj.isFlip,
+          })
+
+        resetUnflipCards(state, commit)
 
         if (!state.hasFlippedCard) {
           state.hasFlippedCard = true
           state.firstCard = obj
+          unflipSingleCard(state, commit)
         } else {
+          resetUnflipSingleCard(state, commit)
           state.hasFlippedCard = false
           state.secondCard = obj
-          checkForMatch(state, commit)
+          checkForMatch(state, commit, getters)
         }
       }
     },

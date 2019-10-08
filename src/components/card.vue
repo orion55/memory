@@ -1,6 +1,6 @@
 <template>
     <transition name="fade"
-                enter-active-class="animated fadeIn fast"
+                enter-active-class="animated fadeIn"
                 leave-active-class="animated fadeOut" mode="out-in">
         <div :class="['card__item', card.item]" v-if="card.isShow" @click="onClick(card.id)">
             <div :class="['card', card.isFlip ? 'flip' : '' ]">
@@ -19,8 +19,8 @@
         type: Object,
       },
       onClick: {
-        type: Function
-      }
+        type: Function,
+      },
     },
   }
 </script>
@@ -40,7 +40,7 @@
         transition: transform .5s;
         /*box-shadow: 1px 1px 1px rgba(0, 0, 0, .3);*/
         border-radius: 10px;
-
+        cursor: pointer;
 
         &:active {
             transform: scale(0.97);
