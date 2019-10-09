@@ -1,0 +1,69 @@
+<template>
+    <div class="timer" :key="currentTime">
+        <div class="timer__digit">{{ minutes | twoDigits }}</div>
+        <div class="timer__digit">:</div>
+        <div class="timer__digit">{{ seconds | twoDigits }}</div>
+    </div>
+</template>
+
+<script>
+  export default {
+    name: 'timer',
+    data: function () {
+      return {
+        currentTime: 0,
+        timer: 0,
+
+      }
+    },
+    mounted () {
+      this.startTimer()
+    },
+    destroyed () {
+      this.stopTimer()
+    },
+    computed: {
+      seconds () {
+        return Math.trunc(this.currentTime) % 60
+      },
+      minutes () {
+        return Math.trunc(this.currentTime / 60) % 60
+      },
+    },
+    methods: {
+      startTimer () {
+        this.timer = setInterval(() => { this.currentTime++ }, 1000)
+      },
+      stopTimer () {
+        clearTimeout(this.timer)
+      },
+    },
+    filters: {
+      twoDigits (value) {
+        if (value.toString().length <= 1) {
+          return '0' + value.toString()
+        }
+        return value.toString()
+      },
+    },
+  }
+</script>
+
+<style scoped lang="scss">
+    @import "css/vars";
+
+    .timer {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 40px;
+        color: $color-two;
+        font-weight: 700;
+        text-shadow: 0 1px 0 rgb(255, 255, 255), 0 -1px 0 rgb(255, 255, 255), 1px 0 0 rgb(255, 255, 255), -1px 0 0 rgb(255, 255, 255), 1px 1px 0 rgb(255, 255, 255), 1px -1px 0 rgb(255, 255, 255), -1px 1px 0 rgb(255, 255, 255), -1px -1px 0 rgb(255, 255, 255);
+        letter-spacing: 2px;
+    }
+
+    .timer__digit {
+        padding-left: 5px;
+    }
+</style>
