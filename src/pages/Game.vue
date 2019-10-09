@@ -6,7 +6,7 @@
 
 <script>
   import card from '../components/card'
-  import { mapState, mapActions } from 'vuex'
+  import { mapState, mapActions, mapGetters, mapMutations } from 'vuex'
 
   export default {
     name: 'Game',
@@ -14,11 +14,25 @@
       card,
     },
     computed: {
-      ...mapState(['cards'])
+      ...mapState(['cards']), ...mapGetters(['isFinish'])
     },
     methods: {
-      ...mapActions(['flipCard'])
-    }
+      ...mapActions(['flipCard']), ...mapMutations(['resetBoard'])
+    },
+    watch: {
+      isFinish: function (newVal) {
+        if (newVal) {
+          this.resetBoard()
+          this.$swal({
+              type: 'success',
+              title: 'Победа',
+              html: 'Вы победили!',
+              confirmButtonColor: '#FF9C13',
+            }
+          )
+        }
+      }
+    },
   }
 
 </script>

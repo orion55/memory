@@ -1,14 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import { generateGrid } from './helpers/grid'
-import {
-  checkForMatch,
-  getIndexById,
-  getObjById,
-  resetUnflipCards,
-  resetUnflipSingleCard,
-  unflipSingleCard,
-} from './helpers/util'
+import * as util from './helpers/util'
 
 Vue.use(Vuex)
 
@@ -28,27 +21,30 @@ export default new Vuex.Store({
   },
   mutations: {
     setFlip (state, {id, flag}) {
-      const obj = getObjById(state, id)
+      const obj = util.getObjById(state, id)
       if (obj) {
         let cardsTmp = state.cards
         obj.isFlip = flag
-        cardsTmp[getIndexById(state, id)] = obj
+        cardsTmp[util.getIndexById(state, id)] = obj
         Vue.set(state, 'cards', cardsTmp)
       }
     },
     setShow (state, {id, flag}) {
-      const obj = getObjById(state, id)
+      const obj = util.getObjById(state, id)
       if (obj) {
         let cardsTmp = state.cards
         obj.isShow = flag
-        cardsTmp[getIndexById(state, id)] = obj
+        cardsTmp[util.getIndexById(state, id)] = obj
         Vue.set(state, 'cards', cardsTmp)
       }
     },
+    resetBoard (state) {
+      util.resetBoard(state)
+    }
   },
   actions: {
-    flipCard ({state, commit, getters}, id) {
-      const obj = getObjById(state, id)
+    flipCard ({state, commit}, id) {
+      const obj = util.getObjById(state, id)
       if (obj) {
         if (obj === state.firstCard || obj === state.secondCard) {
           return
@@ -60,17 +56,17 @@ export default new Vuex.Store({
             flag: !obj.isFlip,
           })
 
-        resetUnflipCards(state, commit)
+        util.resetUnflipCards(state, commit)
 
         if (!state.hasFlippedCard) {
           state.hasFlippedCard = true
           state.firstCard = obj
-          unflipSingleCard(state, commit)
+          util.unflipSingleCard(state, commit)
         } else {
-          resetUnflipSingleCard(state, commit)
+          util.resetUnflipSingleCard(state)
           state.hasFlippedCard = false
           state.secondCard = obj
-          checkForMatch(state, commit, getters)
+          util.checkForMatch(state, commit)
         }
       }
     },

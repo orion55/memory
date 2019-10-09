@@ -8,15 +8,15 @@ function getIndexById (state, id) {
   return (idx === -1) ? null : idx
 }
 
-function checkForMatch (state, commit, getters) {
+function checkForMatch (state, commit) {
   if (state.firstCard.nameCard === state.secondCard.nameCard) {
-    disableCards(state, commit, getters)
+    disableCards(state, commit)
   } else {
     unflipCards(state, commit)
   }
 }
 
-function disableCards (state, commit, getters) {
+function disableCards (state, commit) {
   setTimeout(() => {
     commit(
       'setShow',
@@ -31,7 +31,6 @@ function disableCards (state, commit, getters) {
         flag: false,
       })
     resetBoard(state)
-    console.log(getters.isFinish)
   }, 500)
 }
 
@@ -92,7 +91,7 @@ function resetUnflipCards (state, commit) {
   }
 }
 
-function resetUnflipSingleCard (state, commit) {
+function resetUnflipSingleCard (state) {
   if (state.firstTimeoutID !== 0) {
     clearTimeout(state.firstTimeoutID)
     state.firstTimeoutID = 0
@@ -106,4 +105,5 @@ export {
   resetUnflipCards,
   unflipSingleCard,
   resetUnflipSingleCard,
+  resetBoard
 }
