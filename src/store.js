@@ -23,19 +23,15 @@ export default new Vuex.Store({
     setFlip (state, {id, flag}) {
       const obj = util.getObjById(state, id)
       if (obj) {
-        let cardsTmp = state.cards
         obj.isFlip = flag
-        cardsTmp[util.getIndexById(state, id)] = obj
-        Vue.set(state, 'cards', cardsTmp)
+        Vue.set(state.cards[util.getIndexById(state, id)], 'cards', obj)
       }
     },
     setShow (state, {id, flag}) {
       const obj = util.getObjById(state, id)
       if (obj) {
-        let cardsTmp = state.cards
         obj.isShow = flag
-        cardsTmp[util.getIndexById(state, id)] = obj
-        Vue.set(state, 'cards', cardsTmp)
+        Vue.set(state.cards[util.getIndexById(state, id)], 'cards', obj)
       }
     },
     resetBoard (state) {
