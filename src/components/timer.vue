@@ -9,33 +9,12 @@
 <script>
   export default {
     name: 'timer',
-    data: function () {
-      return {
-        currentTime: 0,
-        timer: 0,
-
-      }
-    },
-    mounted () {
-      this.startTimer()
-    },
-    destroyed () {
-      this.stopTimer()
-    },
     computed: {
       seconds () {
         return Math.trunc(this.currentTime) % 60
       },
       minutes () {
         return Math.trunc(this.currentTime / 60) % 60
-      },
-    },
-    methods: {
-      startTimer () {
-        this.timer = setInterval(() => { this.currentTime++ }, 1000)
-      },
-      stopTimer () {
-        clearTimeout(this.timer)
       },
     },
     filters: {

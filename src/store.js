@@ -13,6 +13,8 @@ export default new Vuex.Store({
     secondCard: null,
     firstTimeoutID: 0,
     secondTimeoutID: 0,
+    currentTime: 0,
+    timer: 0,
   },
   getters: {
     isFinish (state) {
@@ -36,6 +38,18 @@ export default new Vuex.Store({
     },
     resetBoard (state) {
       util.resetBoard(state)
+    },
+    setTimer (state, id) {
+      state.timer = id
+    },
+    stopTimer (state) {
+      clearTimeout(state.timer)
+    },
+    setCurrentTime (state, num) {
+      state.currentTime = num
+    },
+    addCurrentTime (state) {
+      state.currentTime++
     }
   },
   actions: {
@@ -66,6 +80,10 @@ export default new Vuex.Store({
         }
       }
     },
+    startTimer (state, commit) {
+      commit('setTimer', setInterval(() => { commit('addCurrentTime') }, 1000))
+    },
+
   },
 })
 
