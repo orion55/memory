@@ -44,6 +44,7 @@ export default new Vuex.Store({
     },
     stopTimer (state) {
       clearTimeout(state.timer)
+      state.timer = 0
     },
     setCurrentTime (state, num) {
       state.currentTime = num

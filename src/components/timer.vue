@@ -7,8 +7,16 @@
 </template>
 
 <script>
+  import { mapState } from 'vuex'
+
   export default {
     name: 'timer',
+    methods: {
+      ...mapActions(['startTimer'])
+    },
+    mounted: {
+      this.startTimer()
+    },
     computed: {
       seconds () {
         return Math.trunc(this.currentTime) % 60
@@ -16,6 +24,7 @@
       minutes () {
         return Math.trunc(this.currentTime / 60) % 60
       },
+      ...mapState(['currentTime'])
     },
     filters: {
       twoDigits (value) {
