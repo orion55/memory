@@ -51,7 +51,7 @@ export default new Vuex.Store({
     },
     addCurrentTime (state) {
       state.currentTime++
-    }
+    },
   },
   actions: {
     flipCard ({state, commit}, id) {
@@ -81,7 +81,8 @@ export default new Vuex.Store({
         }
       }
     },
-    startTimer (state, commit) {
+    startTimer ({state, commit}) {
+      commit('setCurrentTime', 0)
       commit('setTimer', setInterval(() => { commit('addCurrentTime') }, 1000))
     },
 

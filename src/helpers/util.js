@@ -98,6 +98,20 @@ function resetUnflipSingleCard (state) {
   }
 }
 
+function getFormattedTime (num) {
+  let twoDigits = (value) => {
+    if (value.toString().length <= 1) {
+      return '0' + value.toString()
+    }
+    return value.toString()
+  }
+
+  const sec = Math.trunc(num) % 60
+  const min = Math.trunc(num / 60) % 60
+
+  return twoDigits(min) + ':' + twoDigits(sec)
+}
+
 export {
   getObjById,
   getIndexById,
@@ -105,5 +119,6 @@ export {
   resetUnflipCards,
   unflipSingleCard,
   resetUnflipSingleCard,
-  resetBoard
+  resetBoard,
+  getFormattedTime,
 }
