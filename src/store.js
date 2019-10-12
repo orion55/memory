@@ -63,11 +63,14 @@ export default new Vuex.Store({
     },
     changeRating (state, userTime) {
       let idx = state.rating.findIndex((item) => item.timeUser > userTime)
+      if (idx === -1) {
+        idx = 9
+      }
       state.rating.splice(idx, 0, {
         nameUser: state.userName,
         timeUser: userTime,
       })
-      state.rating = state.rating.slice(0, 9);
+      state.rating = state.rating.slice(0, 9)
       state.curPosition = idx
     },
   },
