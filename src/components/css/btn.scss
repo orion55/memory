@@ -10,15 +10,13 @@
   border-radius: 7px;
   font-weight: 700;
 
-  padding: 6px 6px;
-
   color: #FFFFFF;
   background-color: $color-two;
 
   transition: background-color .5s ease-out;
   border: white solid 2px;
+  cursor: pointer;
 
-  width: 20px;
 
   &:active {
     transform: translateY(1px);
@@ -39,5 +37,28 @@
     outline: none;
     box-shadow: 0 0 0 3px rgba(255, 156, 19, 0.5),
     0 0 0 1.5px rgba(166, 99, 6, 0.5);
+  }
+}
+
+.btn__app {
+  margin-right: 20px;
+  width: 20px;
+  padding: 6px 6px;
+}
+
+.btn__svg {
+  display: block;
+}
+
+.btn__start {
+  padding: 15px 200px;
+  text-transform: uppercase;
+  font-weight: 900;
+  font-size: 22px;
+  background: $gradient;
+  margin-bottom: 30px;
+
+  &:hover {
+    background: white;
   }
 }

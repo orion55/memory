@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import { generateGrid } from './helpers/grid'
+import { generateGrid, generateUsers } from './helpers/generators'
 import * as util from './helpers/util'
 
 Vue.use(Vuex)
@@ -15,6 +15,9 @@ export default new Vuex.Store({
     secondTimeoutID: 0,
     currentTime: 0,
     timer: 0,
+    rating: generateUsers(),
+    userName: 'noName',
+    curPosition: 99,
   },
   getters: {
     isFinish (state) {
@@ -36,6 +39,9 @@ export default new Vuex.Store({
         Vue.set(state.cards[util.getIndexById(state, id)], 'cards', obj)
       }
     },
+    createCards (state) {
+      state.cards = generateGrid()
+    },
     resetBoard (state) {
       util.resetBoard(state)
     },
@@ -51,6 +57,18 @@ export default new Vuex.Store({
     },
     addCurrentTime (state) {
       state.currentTime++
+    },
+    setUserName (state, name) {
+      state.userName = name
+    },
+    changeRating (state, userTime) {
+      let idx = state.rating.findIndex((item) => item.timeUser > userTime)
+      state.rating.splice(idx, 0, {
+        nameUser: state.userName,
+        timeUser: userTime,
+      })
+      state.rating = state.rating.slice(0, 9);
+      state.curPosition = idx
     },
   },
   actions: {

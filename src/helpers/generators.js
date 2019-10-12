@@ -18,7 +18,7 @@ function generateSimpleGrid () {
 }
 
 function generateGrid () {
-  const countCards = 4
+  const countCards = 18
   const countCells = 6
   const names = ['angular', 'aurelia', 'backbone', 'jest', 'jquery', 'nuxt', 'react', 'svelte', 'vue']
 
@@ -60,4 +60,18 @@ function generateGrid () {
   return cards
 }
 
-export { generateGrid }
+function generateUsers () {
+  let rating = []
+  let user = {}
+  for (let i = 0; i < 10; i++) {
+    user = {
+      nameUser: 'NoName',
+      timeUser: Math.floor(Math.random() * 90) + 30,
+    }
+    rating.push(user)
+  }
+  rating.sort((a, b) => a.timeUser - b.timeUser)
+  return rating
+}
+
+export { generateGrid, generateUsers }

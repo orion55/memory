@@ -49,7 +49,7 @@ function unflipCards (state, commit) {
         flag: false,
       })
     resetBoard(state)
-  }, 1500)
+  }, 5000)
 }
 
 function unflipSingleCard (state, commit) {
@@ -61,15 +61,21 @@ function unflipSingleCard (state, commit) {
         flag: false,
       })
     resetBoard(state)
-  }, 1500)
+  }, 5000)
 }
 
 function resetBoard (state) {
   state.hasFlippedCard = false
   state.firstCard = null
   state.secondCard = null
-  state.firstTimeoutID = 0
-  state.secondTimeoutID = 0
+  if (state.firstTimeoutID !== 0) {
+    clearTimeout(state.firstTimeoutID)
+    state.firstTimeoutID = 0
+  }
+  if (state.secondTimeoutID !== 0) {
+    clearTimeout(state.secondTimeoutID)
+    state.secondTimeoutID = 0
+  }
 }
 
 function resetUnflipCards (state, commit) {
@@ -112,6 +118,13 @@ function getFormattedTime (num) {
   return twoDigits(min) + ':' + twoDigits(sec)
 }
 
+function resetGame () {
+  this.stopTimer()
+  this.resetBoard()
+  this.createCards()
+  this.$router.push({name: 'Home'})
+}
+
 export {
   getObjById,
   getIndexById,
@@ -121,4 +134,5 @@ export {
   resetUnflipSingleCard,
   resetBoard,
   getFormattedTime,
+  resetGame,
 }

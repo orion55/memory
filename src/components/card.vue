@@ -70,7 +70,7 @@
         padding: 10px;
         position: absolute;
         border-radius: 10px;
-        background: linear-gradient(to bottom, #ffc97d 0%, #ffb54e 50%, #ff9d13 51%, #bf873a 100%);
+        background: $gradient;
         border: white solid 1px;
     }
 

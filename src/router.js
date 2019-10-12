@@ -7,13 +7,13 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'game',
-      component: () => import('./pages/Game.vue')
+      name: 'Home',
+      component: () => import('./pages/Home.vue')
     },
     {
-      path: '/about',
-      name: 'about',
-      component: () => import('./pages/About.vue')
+      path: '/game',
+      name: 'Game',
+      component: () => import('./pages/Game.vue')
     }
   ]
 })
