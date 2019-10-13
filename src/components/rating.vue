@@ -22,6 +22,7 @@
       ...mapState(['rating', 'curPosition']),
     },
     methods: {
+      //вывести отформитированное время минуты и секунды
       formattedTime: function (num) {
         return util.getFormattedTime(num)
       },

@@ -1,3 +1,4 @@
+//создание простого тестового поля
 function generateSimpleGrid () {
   const images = ['angular', 'aurelia', 'backbone', 'jest', 'jquery', 'nuxt', 'react', 'svelte', 'vue']
   let cards = []
@@ -16,7 +17,7 @@ function generateSimpleGrid () {
   }
   return cards
 }
-
+//создание поля со случайными неповторяющими попарными картами
 function generateGrid () {
   const countCards = 18
   const countCells = 6
@@ -59,7 +60,7 @@ function generateGrid () {
   }
   return cards
 }
-
+//создание пользователей для рейтинга
 function generateUsers () {
   let rating = []
   let user = {}

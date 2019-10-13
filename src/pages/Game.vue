@@ -44,6 +44,7 @@
     },
     methods: {
       ...mapActions(['flipCard', 'startTimer']), ...mapMutations(['resetBoard', 'stopTimer', 'getFormattedTime', 'createCards', 'changeRating']),
+      //функция принудительного выхода из игры
       quit: function () {
         this.$swal({
           title: 'Вы действительно хотите прервать игру?',
@@ -65,6 +66,7 @@
     },
 
     watch: {
+      //игра закончена?
       isFinish: function (newVal) {
         if (newVal) {
           this.stopTimer()

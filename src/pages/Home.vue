@@ -24,6 +24,7 @@
     },
     methods: {
       ...mapMutations(['setUserName']),
+      //старт игры
       gameStart: function () {
         if (this.curPosition === 99) {
           this.$swal({

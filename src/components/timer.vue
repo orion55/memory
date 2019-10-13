@@ -12,15 +12,18 @@
   export default {
     name: 'timer',
     computed: {
+      //считаем секунды
       seconds () {
         return Math.trunc(this.currentTime) % 60
       },
+      //считаем минуты
       minutes () {
         return Math.trunc(this.currentTime / 60) % 60
       },
       ...mapState(['currentTime'])
     },
     filters: {
+      //добавление нулей к секундам и минутам
       twoDigits (value) {
         if (value.toString().length <= 1) {
           return '0' + value.toString()

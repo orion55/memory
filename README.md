@@ -1,29 +1,37 @@
-# memory
+# Игра “Память”
+Поле 6х6. 18 парных карточек с различными иконками. При нажатии на кнопку “старт” запускается таймер. 
+Карты, естественно, должны располагаются в случайном порядке. 
+По нажатию на карточку она открывается, в течении 5 сек игроку нужно открыть вторую карточку, 
+если иконки на паре открытых карт совпадают они удаляются, если нет - пара открытых карт закрываются. 
+Игра заканчивается когда все пары карт найдены. Таймер останавливается.
 
-## Project setup
+![Logo of the project](https://orion55.github.io/memory/main.jpg)
+
+## Развёртывание проекта
+Вот краткое введение о том, что должен сделать разработчик, чтобы начать дальнейшую разработку проекта:
 ```
+git clone https://github.com/orion55/memory.git
+cd memory/
 npm install
+npm serve
 ```
 
-### Compiles and hot-reloads for development
+### Компиляция и горячая перезагрузка для разработки
 ```
 npm run serve
 ```
 
-### Compiles and minifies for production
+### Компиляция и минификация для продакшена
 ```
 npm run build
 ```
+## Ссылки
 
-### Run your tests
-```
-npm run test
-```
+- Домашняя страница: https://orion55.github.io/memory/
+- Repository: https://github.com/orion55/memory
 
-### Lints and fixes files
-```
-npm run lint
-```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+
+## Licensing
+
+Код в этом проекте распространяется по лицензии MIT.

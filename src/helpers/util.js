@@ -1,13 +1,16 @@
+//получение объекта карты по её идентификатору
 function getObjById (state, id) {
   const obj = state.cards.find((element) => element.id === id)
   return (obj === undefined) ? null : obj
 }
 
+//получение позиции карты в коллекции по её идентификатору
 function getIndexById (state, id) {
   const idx = state.cards.findIndex((element) => element.id === id)
   return (idx === -1) ? null : idx
 }
 
+//проверка одинаковы ли 2 перевернутые карты
 function checkForMatch (state, commit) {
   if (state.firstCard.nameCard === state.secondCard.nameCard) {
     disableCards(state, commit)
@@ -16,6 +19,7 @@ function checkForMatch (state, commit) {
   }
 }
 
+//скрытие 2-х одинаковых карт
 function disableCards (state, commit) {
   setTimeout(() => {
     commit(
@@ -34,6 +38,7 @@ function disableCards (state, commit) {
   }, 500)
 }
 
+//переворот 2-х карт
 function unflipCards (state, commit) {
   state.secondTimeoutID = setTimeout(() => {
     commit(
@@ -52,6 +57,7 @@ function unflipCards (state, commit) {
   }, 5000)
 }
 
+//переворот 1 карты
 function unflipSingleCard (state, commit) {
   state.firstTimeoutID = setTimeout(() => {
     commit(
@@ -64,6 +70,7 @@ function unflipSingleCard (state, commit) {
   }, 5000)
 }
 
+//сброс игрового поля
 function resetBoard (state) {
   state.hasFlippedCard = false
   state.firstCard = null
@@ -77,7 +84,7 @@ function resetBoard (state) {
     state.secondTimeoutID = 0
   }
 }
-
+//сброс перевёрнутых карт по таймеру
 function resetUnflipCards (state, commit) {
   if (state.secondTimeoutID !== 0) {
     clearTimeout(state.secondTimeoutID)
@@ -96,14 +103,14 @@ function resetUnflipCards (state, commit) {
     resetBoard(state)
   }
 }
-
+//сброс одной перевёрнутой карты по таймеру
 function resetUnflipSingleCard (state) {
   if (state.firstTimeoutID !== 0) {
     clearTimeout(state.firstTimeoutID)
     state.firstTimeoutID = 0
   }
 }
-
+//форматирование времени с ведущими нулями для рейтинга
 function getFormattedTime (num) {
   let twoDigits = (value) => {
     if (value.toString().length <= 1) {
@@ -117,7 +124,7 @@ function getFormattedTime (num) {
 
   return twoDigits(min) + ':' + twoDigits(sec)
 }
-
+//сброс игры и переход на главный экран
 function resetGame () {
   this.stopTimer()
   this.resetBoard()
